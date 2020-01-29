@@ -11,4 +11,5 @@ def index(request): # Construct a dictionary to pass to the template engine as i
 
 
 def about(request):
-    return HttpResponse("Rango says here is the about page. <a href='/rango/'>Index</a>")
+    context_dict = {'boldmessage' : 'This tutorial has been put together by Christos'}
+    return render(request, 'rango/about.html', context= context_dict)
