@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-
+{% extends 'rango/base.html' %}
 {% load staticfiles %}
 
-<html>
+{% block title_block %}
+	Homepage
+{% endblock %}
 
-	<head>
-		<title>Rango</title>
-	</head>
+{% block body_block %}
+	<h1>Rango says...</h1>
+	<div>
+		hey there partner! <br/>
+		<strong>{{ boldmessage }}</strong>
 
-	<body>
-		<h1>Rango says...</h1>
-		<div>
-			hey there partner! <br/>
-			<strong>{{ boldmessage }}</strong>
-
-		</div>
-
-		<h2>Most Liked Categories</h2>
+	</div>
+	<h2>Most Liked Categories</h2>
 
 		<div>
 		{% if categories %}
@@ -52,13 +48,7 @@
 		<strong>There are no pages present.</strong>
 	{% endif %}
 	</div>
-
-	<div>
-		<a href="/rango/about/">About Rango</a><br />
-		<a href="/rango/add_category/">Add a New Category</a><br />
-		<img src="{% static "images/rango.jpg" %}"
+	
+	<img src="{% static "images/rango.jpg" %}"
 			alt="Picture of Rango" />
-	</div>
-	</body>
-
-</html>
+{% endblock %}
