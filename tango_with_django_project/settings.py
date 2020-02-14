@@ -18,8 +18,8 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
-
 LOGIN_URL = 'rango:login'
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,6 +30,7 @@ SECRET_KEY = 'ipguo_&zggu@6)08(u2_3%a#(iw&480q7j&cn5@c*zjh-)p*yf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 ALLOWED_HOSTS = []
 

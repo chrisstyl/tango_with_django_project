@@ -4,7 +4,7 @@
 # With assistance from Gerardo A-C (https://github.com/gerac83) and Enzo Roiz (https://github.com/enzoroiz)
 # 
 # Chapter 9 -- Forms
-# Last updated: January 10th, 2020
+# Last updated: February 6th, 2020
 # Revising Author: David Maxwell
 # 
 
@@ -214,7 +214,7 @@ class Chapter9RegistrationTests(TestCase):
 
         template_str = get_template(template_path)
         full_title_pattern = r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Register(\s*|\n*)</title>'
-        block_title_pattern = r'{% block title_block %}(\s*|\n*)Register(\s*|\n*){% endblock %}'
+        block_title_pattern = r'{% block title_block %}(\s*|\n*)Register(\s*|\n*){% (endblock|endblock title_block) %}'
 
         request = self.client.get(reverse('rango:register'))
         content = request.content.decode('utf-8')
@@ -230,7 +230,7 @@ class Chapter9RegistrationTests(TestCase):
         request = self.client.get(reverse('rango:register'))
         content = request.content.decode('utf-8')
 
-        self.assertTrue('<h1>Register for Rango</h1>' in content, f"{FAILURE_HEADER}We couldn't find the '<h1>Register for Rango</h1>' header tag in your register template. Did you follow the specification in the book to the leter?{FAILURE_FOOTER}")
+        self.assertTrue('<h1>Register for Rango</h1>' in content, f"{FAILURE_HEADER}We couldn't find the '<h1>Register for Rango</h1>' header tag in your register template. Did you follow the specification in the book to the letter?{FAILURE_FOOTER}")
         self.assertTrue('Rango says: <strong>register here!</strong>' in content, f"{FAILURE_HEADER}When loading the register view with a GET request, we didn't see the required 'Rango says: <strong>register here!</strong>'. Check your register.html template and try again.{FAILURE_FOOTER}")
         self.assertTrue('enctype="multipart/form-data"' in content, f"{FAILURE_HEADER}In your register.html template, are you using 'multipart/form-data' for the <form>'s 'enctype'?{FAILURE_FOOTER}")
         self.assertTrue('action="/rango/register/"' in content, f"{FAILURE_HEADER}Is your <form> in register.html pointing to the correct URL for registering a user?{FAILURE_FOOTER}")
@@ -343,7 +343,7 @@ class Chapter9LoginTests(TestCase):
 
         template_str = get_template(template_path)
         full_title_pattern = r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Login(\s*|\n*)</title>'
-        block_title_pattern = r'{% block title_block %}(\s*|\n*)Login(\s*|\n*){% endblock %}'
+        block_title_pattern = r'{% block title_block %}(\s*|\n*)Login(\s*|\n*){% (endblock|endblock title_block) %}'
 
         request = self.client.get(reverse('rango:login'))
         content = request.content.decode('utf-8')
@@ -524,7 +524,7 @@ class Chapter9ExerciseTests(TestCase):
 
         template_str = get_template(template_path)
         full_title_pattern = r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Restricted Page(\s*|\n*)</title>'
-        block_title_pattern = r'{% block title_block %}(\s*|\n*)Restricted Page(\s*|\n*){% endblock %}'
+        block_title_pattern = r'{% block title_block %}(\s*|\n*)Restricted Page(\s*|\n*){% (endblock|endblock title_block) %}'
 
         user_object = create_user_object()
         self.client.login(username='testuser', password='testabc123')
